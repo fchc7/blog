@@ -5,7 +5,7 @@ import NotFound from '../components/NotFound.vue'
 const { site, frontmatter, page } = useData()
 </script>
 <template>
-  <NotFound v-if="!page.isNotFound" />
+  <NotFound v-if="page.isNotFound" />
   <div v-else>
     <Content />
   </div>

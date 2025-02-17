@@ -2,7 +2,8 @@
 
 <template>
   <div>
-    <span style="font-family: 'Geist'">404 Not Found</span>
-    <a href="/" class="text-blue-500">To Home</a>
+    <span>404 Not Found</span>
+    <span class="divider"></span>
+    <a href="/" class="i-material-symbols:arrow-warm-up-rounded"></a>
   </div>
 </template>

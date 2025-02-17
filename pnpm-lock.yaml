@@ -12,6 +12,12 @@ importers:
         specifier: ^3.5.13
         version: 3.5.13
     devDependencies:
+      '@iconify-json/material-symbols':
+        specifier: ^1.2.14
+        version: 1.2.14
+      '@unocss/preset-icons':
+        specifier: ^65.5.0
+        version: 65.5.0
       '@unocss/preset-uno':
         specifier: ^65.5.0
         version: 65.5.0
@@ -286,6 +292,9 @@ packages:
     engines: {node: '>=12'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/material-symbols@1.2.14':
+    resolution: {integrity: sha512-S0AAFFQPVr8Dkrprspz/otNjxdD3rJRXDGZjbO8a8zn8ZR5mO8jAF81lVoTfUWxPH6SCtH2lK1JQGXHGPxld7g==}
 
   '@iconify-json/simple-icons@1.2.24':
     resolution: {integrity: sha512-06ZWXZx3PHCE+02zn+iIGOKKNgE3kyPd0Yh7IUEIa0bCYI6UmGlsYYghRx8As9TnTNYMCEiy5V0zI4Jb6EY6XA==}
@@ -1308,6 +1317,10 @@ snapshots:
 
   '@esbuild/win32-x64@0.21.5':
     optional: true
+
+  '@iconify-json/material-symbols@1.2.14':
+    dependencies:
+      '@iconify/types': 2.0.0
 
   '@iconify-json/simple-icons@1.2.24':
     dependencies:
