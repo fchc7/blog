@@ -14,4 +14,21 @@
   --vp-font-family-mono: "Geist Mono", "Menlo", "Monaco", "Consolas",
     "Liberation Mono", "Courier New", monospace;
   font-optical-sizing: auto;
+
+  /* 亮色模式变量 */
+  --bg-color: color-mix(in oklab, #d9d5bf 20%, transparent);
+  --text-color: #213547;
+}
+
+/* 深色模式变量 */
+.dark {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+/* 应用主题颜色 */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
 }

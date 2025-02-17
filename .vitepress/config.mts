@@ -1,3 +1,4 @@
+/// <reference types="vitepress" />
 import { defineConfig } from 'vitepress'
 import UnoCSS from 'unocss/vite'
 
@@ -7,6 +8,7 @@ export default defineConfig({
   description: "blog",
   vite: {
     plugins: [
+      // @ts-ignore vite版本不一致 `pnpm why vite`
       UnoCSS(),
     ]
   }
