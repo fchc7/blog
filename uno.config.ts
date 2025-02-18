@@ -2,6 +2,8 @@ import { defineConfig, presetUno } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
 
+import fs from 'node:fs/promises'
+
 const colors = {
     cream: {
         50: '#f5f4ef',
@@ -27,6 +29,11 @@ export default defineConfig({
                 'display': 'inline-block',
                 'vertical-align': 'middle',
             },
+            collections: {
+                custom: {
+                    github: () => fs.readFile('./public/icons/github.svg', 'utf-8'),
+                },
+            },
         }),
     ],
     transformers: [
@@ -37,7 +44,7 @@ export default defineConfig({
     },
     shortcuts: [
         ['btn-icon', [
-            'w-6 h-6 rounded-full relative',
+            'rounded-full relative',
             'before:content-[\'\']',
             'before:absolute before:inset-0',
             'before:rounded-full',
