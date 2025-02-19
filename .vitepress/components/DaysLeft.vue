@@ -31,9 +31,13 @@ const tooltipVisible = ref(false)
 const activeIndex = ref(0)
 let tooltipTimer: NodeJS.Timeout | null = null
 
+const cardRef = ref<HTMLElement | null>(null) // 添加对卡片的引用
+
 const calculateTooltipPosition = (event, index) => {
   const dot = event.target
-  const card = dot.closest('.day-card')
+  const card = dot.closest('.days-card')
+  if (!card || !dot) return { x: 0, y: 0 }
+
   const dotRect = dot.getBoundingClientRect()
   const cardRect = card.getBoundingClientRect()
   
@@ -41,27 +45,27 @@ const calculateTooltipPosition = (event, index) => {
   const dotCenterX = dotRect.left - cardRect.left + dotRect.width / 2
   const dotCenterY = dotRect.top - cardRect.top + dotRect.height / 2
   
+  const tooltipWidth = 80
+  const tooltipHeight = 24
+  const gap = 4 // 与点的间距
+  
   // 计算点在卡片中的相对位置（四个象限）
   const isRight = dotCenterX > cardRect.width / 2
   const isBottom = dotCenterY > cardRect.height / 2
   
-  const tooltipWidth = 80  // 减小宽度
-  const tooltipHeight = 24  // 减小高度
-  const padding = 4  // 减小间距
-  
   let x, y
   
-  // 修改位置计算逻辑
+  // 根据点的位置决定tooltip的显示位置
   if (isRight) {
-    x = dotCenterX - tooltipWidth - 2  // 靠近点
+    x = dotCenterX - tooltipWidth - gap // 显示在左侧
   } else {
-    x = dotCenterX + 2  // 靠近点
+    x = dotCenterX + gap // 显示在右侧
   }
   
   if (isBottom) {
-    y = dotCenterY - tooltipHeight - 2
+    y = dotCenterY - tooltipHeight - gap // 显示在上方
   } else {
-    y = dotCenterY + 2
+    y = dotCenterY + gap // 显示在下方
   }
   
   return { x, y }
@@ -120,121 +124,95 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-    <div class="day-card gap-4 p-5" :class="{ 'dark': isDark }">
-      <div class="dot-grid">
-        <div v-for="i in daysInYear" :key="i" class="dot-container" @mouseenter="(e) => handleMouseEnter(e, i)" @mouseleave="handleMouseLeave">
-          <div class="dot" :class="{ 'active': i <= currentDay }"></div>
-        </div>
+  <div ref="cardRef" class="days-card gap-4 p-5">
+    <div class="dot-grid">
+      <div v-for="i in daysInYear" :key="i" 
+           class="dot-container" 
+           @mouseenter="(e) => handleMouseEnter(e, i)" 
+           @mouseleave="handleMouseLeave">
+        <div class="dot" :class="{ 'active': i <= currentDay }"></div>
       </div>
-
-			<div class="dot-footer flex justify-between items-center">
-				<span class="font-mono text-xs">{{ year }}</span>
-				<span class="text-xs">
-					<span class="font-mono">{{ daysInYear -currentDay }}</span>
-					<span class="ml-1 text-gray-500 font-medium">days left</span>
-				</span>
-			</div>
-
-						<!-- 悬浮框 -->
-			<div ref="tooltipRef"
-				 v-show="tooltipVisible"
-				 class="tooltip"
-				 :style="tooltipStyle"
-			>
-				<div class="tooltip-content font-mono">
-					{{ tooltipContent }}
-				</div>
-			</div>
     </div>
-  </template>
-  
-  <style>
-  .day-card {
-    position: relative;
-    border-radius: 24px;
-    overflow: hidden;
-    background: var(--card-bg);
-    color: var(--text-color);
-    display: inline-flex;
-    flex-direction: column;
-  }
-  
-  .day-card.dark {
-    --card-bg: #000;
-    --text-color: #fff;
-    --dot-color: rgba(255, 255, 255, 0.2);
-  }
-  
-  .day-card:not(.dark) {
-    --card-bg: #fff;
-    --text-color: #000;
-    --dot-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .day-card:not(.dark) {
-    --card-bg: #fff;
-    --text-color: #000;
-    --dot-color: rgba(0, 0, 0, 0.2);
-  }
-  
-  .top {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-  
-  .bottom {
-    display: flex;
-    gap: 0.5rem;
-    font-size: 1.5rem;
-    font-weight: 500;
-  }
-  
-  .dot-grid {
-    width: 100%;
-    height: 100%;
-    display: grid;
-    grid-template-columns: repeat(15, 16px);
-    gap: 0px;
-  }
 
-	.dot-container {
-		position: relative;
-		width: 16px;
-		height: 16px;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		/* background-color: aquamarine; */
-		opacity: .8;
-	}
-  
-  .dot {
-    width: 4px;
-    height: 4px;
-    border-radius: 50%;
-    background-color: var(--dot-color);
-  }
+    <div class="dot-footer flex justify-between items-center">
+      <span class="font-mono text-xs">{{ year }}</span>
+      <span class="text-xs">
+        <span class="font-mono">{{ daysInYear - currentDay }}</span>
+        <span class="ml-1 text-gray-500 font-medium">days left</span>
+      </span>
+    </div>
 
-	.dot.active {
-		background-color: var(--text-color);
-	}
+    <!-- 悬浮框 -->
+    <div ref="tooltipRef"
+         v-show="tooltipVisible"
+         class="tooltip"
+         :style="tooltipStyle">
+      <div class="tooltip-content font-mono">
+        {{ tooltipContent }}
+      </div>
+    </div>
+  </div>
+</template>
 
-	.tooltip {
-		position: absolute;
-		pointer-events: none;
-		transition: all 0.2s ease;
-	}
+<style>
+.days-card {
+  position: relative;
+  display: inline-flex;
+  flex-direction: column;
+  background: var(--bg-color);
+  border-radius: 18px;
+  border: 1px solid color-mix(in oklab, var(--text-color) 15%, transparent);
+  width: 100%;
+}
 
-	.tooltip-content {
-		background: var(--text-color);  /* 使用文字颜色作为背景 */
-		color: var(--card-bg);         /* 使用卡片背景色作为文字颜色 */
-		border: none;                  /* 移除边框 */
-		padding: 4px 8px;
-		border-radius: 4px;
-		font-size: 12px;
-		white-space: nowrap;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-	}
-  </style>
+.dot-grid {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 0px;
+}
+
+.dot-container {
+  position: relative;
+  aspect-ratio: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: var(--text-color);
+  opacity: 0.2;
+}
+
+.dot.active {
+  opacity: 1;
+}
+
+.tooltip {
+  position: absolute;
+  pointer-events: none;
+  transition: all 0.2s ease;
+  z-index: 10; /* 添加z-index确保显示在上层 */
+}
+
+.tooltip-content {
+  background: var(--text-color);
+  color: var(--bg-color);
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  font-weight: 500; /* 加粗文字 */
+}
+
+/* 浅色模式下加深文字颜色 */
+:root:not(.dark) .tooltip-content {
+  background: #000;
+  color: #fff;
+}
+</style>

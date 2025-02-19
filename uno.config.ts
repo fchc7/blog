@@ -44,15 +44,16 @@ export default defineConfig({
     },
     shortcuts: [
         ['btn-icon', [
-            'rounded-full relative',
+            'rounded-lg relative',
             'before:content-[\'\']',
             'before:absolute before:inset-0',
-            'before:rounded-full',
+            'before:rounded-lg',
             'before:transition-all before:duration-200',
             'before:scale-0 before:opacity-0',
             'hover:before:scale-100 hover:before:opacity-100',
             'before:bg-gray-200 dark:before:bg-gray-800',
-            'before:z-[-1]'
+            'before:z-[-1]',
+            'hover:before:z-0',
         ]],
         ['btn-icon-bg', 'before:bg-'],
     ],
