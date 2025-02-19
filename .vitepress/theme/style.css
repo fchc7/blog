@@ -8,7 +8,9 @@
   src: url("/fonts/GeistMono[wght].woff2") format("woff2");
 }
 
+/* 添加初始主题预设，防止闪烁 */
 :root {
+  color-scheme: light;
   --vp-font-family-base: "Geist", sans-serif, ui-sans-serif, system-ui,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --vp-font-family-mono: "Geist Mono", "Menlo", "Monaco", "Consolas",
@@ -21,14 +23,30 @@
 }
 
 /* 深色模式变量 */
-.dark {
+:root.dark {
+  color-scheme: dark;
   --bg-color: #111111;
   --text-color: #ffffff;
 }
 
-/* 应用主题颜色 */
+/* 添加初始主题样式，防止闪烁 */
+:root {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+html {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
 body {
   background-color: var(--bg-color);
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
+}
+
+/* 添加这段脚本，在页面加载前就设置主题 */
+script {
+  display: none;
 }

@@ -124,7 +124,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <div ref="cardRef" class="days-card gap-4 p-5">
+  <div ref="cardRef" class="days-card gap-4 p-4">
     <div class="dot-grid">
       <div v-for="i in daysInYear" :key="i" 
            class="dot-container" 
@@ -134,11 +134,11 @@ onBeforeUnmount(() => {
       </div>
     </div>
 
-    <div class="dot-footer flex justify-between items-center">
+    <div class="dot-footer flex justify-between items-center px-1.5">
       <span class="font-mono text-xs">{{ year }}</span>
       <span class="text-xs">
         <span class="font-mono">{{ daysInYear - currentDay }}</span>
-        <span class="ml-1 text-gray-500 font-medium">days left</span>
+        <span class="ml-2 text-gray-500 font-medium">days left</span>
       </span>
     </div>
 

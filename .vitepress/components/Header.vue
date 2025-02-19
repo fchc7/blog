@@ -10,7 +10,7 @@ const { y } = useScroll(window)
   <header class="w-full sticky top-0 z-10 py-7 px-4 backdrop-blur-sm transition-shadow"
           :class="{ 'shadow-sm': y > 0 }">
     <div class="max-w-[670px] mx-auto w-full px-4 flex justify-between items-center">
-      <p class="text-lg font-bold">Fchc7</p>
+      <p class="text-xl font-bold">Fchc7</p>
       <div class="flex justify-end gap-1">
         <button title="GitHub" class="btn-icon text-lg w-7 h-7">
           <a href="https://github.com/fchc7" class="i-custom:github"></a>

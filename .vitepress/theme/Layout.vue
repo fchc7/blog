@@ -13,7 +13,7 @@ const { page } = useData()
     <Header class="px-4" />
     
     <!-- 主要内容区域 -->
-    <main class="flex-grow my-[100px]">
+    <main class="flex-grow my-[60px]">
       <div class="max-w-[670px] mx-auto px-4 w-full">
         <NotFound v-if="page.isNotFound" />
         <Content v-else />
