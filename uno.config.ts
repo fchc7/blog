@@ -1,6 +1,7 @@
 import { defineConfig, presetUno } from 'unocss'
 import presetIcons from '@unocss/preset-icons'
 import transformerVariantGroup from '@unocss/transformer-variant-group'
+import { presetTypography } from 'unocss'
 
 import fs from 'node:fs/promises'
 
@@ -28,13 +29,17 @@ export default defineConfig({
             extraProperties: {
                 'display': 'inline-block',
                 'vertical-align': 'middle',
+                'width': '1em',
+                'height': '1em',
             },
             collections: {
                 custom: {
                     github: () => fs.readFile('./public/icons/github.svg', 'utf-8'),
+                    logo: () => fs.readFile('./public/icons/logo.svg', 'utf-8'),
                 },
             },
         }),
+        presetTypography(),
     ],
     transformers: [
         transformerVariantGroup(),

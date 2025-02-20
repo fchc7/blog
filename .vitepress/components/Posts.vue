@@ -72,7 +72,7 @@ onMounted(() => {
     <a v-for="(post, index) in posts"
        :key="post.title"
        class="post-item group block relative"
-       :href="`/posts/${post.title}`">
+       :href="post.url">
       <div class="flex flex-col gap-1">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-8">
           <span class="post-title text-lg font-medium line-clamp-1">
@@ -95,8 +95,8 @@ onMounted(() => {
           </span>
         </div>
 
-        <p v-if="post.description" class="text-sm text-gray-500/90 mt-1 line-clamp-2">
-          {{ post.description }}
+        <p v-if="post.excerpt" class="text-sm text-gray-500/90 mt-1 line-clamp-2">
+          {{ post.excerpt }}
         </p>
       </div>
       <!-- 悬浮背景效果 -->

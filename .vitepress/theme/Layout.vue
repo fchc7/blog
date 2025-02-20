@@ -16,6 +16,9 @@ const { page } = useData()
     <main class="flex-grow my-[60px]">
       <div class="max-w-[670px] mx-auto px-4 w-full">
         <NotFound v-if="page.isNotFound" />
+        <PostWrapper v-else-if="page.relativePath.startsWith('posts/')">
+          <Content />
+        </PostWrapper>
         <Content v-else />
       </div>
     </main>
