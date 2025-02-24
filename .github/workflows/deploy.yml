@@ -35,7 +35,7 @@ jobs:
           echo "VITE_ICP_NO=${{ secrets.VITE_ICP_NO }}" > .env
 
       - name: Build site
-        run: pnpm build
+        run: pnpm docs:build
 
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v5.0.0
