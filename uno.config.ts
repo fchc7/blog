@@ -5,20 +5,6 @@ import { presetTypography } from 'unocss'
 
 import fs from 'node:fs/promises'
 
-const colors = {
-    cream: {
-        50: '#f5f4ef',
-        100: '#e8e6d9',
-        200: '#d9d5bf',
-        300: '#cfcaaf',
-        400: '#bab38c',
-        500: '#aba273',
-        600: '#998f5c',
-        700: '#80774d',
-        800: '#665f3d',
-        900: '#4c472e',
-    }
-}
 
 export default defineConfig({
     presets: [
@@ -39,13 +25,13 @@ export default defineConfig({
                 },
             },
         }),
-        presetTypography(),
+        presetTypography({}),
     ],
     transformers: [
         transformerVariantGroup(),
     ],
     theme: {
-        colors,
+
     },
     shortcuts: [
         ['btn-icon', [

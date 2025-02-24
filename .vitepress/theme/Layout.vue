@@ -2,6 +2,7 @@
 import { useData } from 'vitepress'
 import NotFound from '../components/NotFound.vue'
 import Header from '../components/Header.vue'
+import PostWrapper from '../components/PostWrapper.vue'
 import { ref } from 'vue'
 
 const { page } = useData()
@@ -28,7 +29,7 @@ const icpNo = ref(import.meta.env.VITE_ICP_NO || 'xxx')
     <!-- 底部备案信息 -->
     <footer class="w-full py-6 text-center text-sm text-gray-500">
       <div class="max-w-[670px] mx-auto px-4 w-full">
-        © 2024 备案号：{{ icpNo }}
+        © {{  new Date().getFullYear() }} 备案号：{{ icpNo }}
       </div>
     </footer>
   </div>

@@ -81,15 +81,15 @@ onMounted(() => {
           <time class="text-sm font-mono text-gray-500/80 whitespace-nowrap order-first sm:order-last">{{ post.date }}</time>
         </div>
         
-        <div class="flex flex-wrap items-center gap-x-2 gap-y-1.5">
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-2 mt-3">
           <span v-for="tag in post.tags"
                 :key="tag"
-                class="tag text-xs leading-base px-2  border rounded-md transition-all duration-300"
+                class="tag text-xs leading-base px-2.5 py-1 border rounded-md transition-all duration-300"
                 :style="{
                   '--tag-color': getTagColor(tag).color,
-                  color: `color-mix(in oklab, var(--text-color) 40%, transparent)`,
-                  borderColor: `color-mix(in oklab, var(--text-color) 15%, transparent)`,
-                  backgroundColor: `color-mix(in oklab, var(--text-color) 3%, transparent)`
+                  color: `color-mix(in oklab, var(--text-color) 60%, transparent)`,
+                  borderColor: `color-mix(in oklab, var(--text-color) 20%, transparent)`,
+                  backgroundColor: `color-mix(in oklab, var(--text-color) 8%, transparent)`
                 }">
             {{ tag }}
           </span>
@@ -149,7 +149,7 @@ onMounted(() => {
 
 .tag {
   font-weight: 500;
-  opacity: 0.7;
+  opacity: 0.85;
   transition: all 0.3s ease;
   position: relative;
   isolation: isolate;
@@ -158,8 +158,8 @@ onMounted(() => {
 .group:hover .tag {
   opacity: 1;
   color: var(--tag-color) !important;
-  border-color: color-mix(in oklab, var(--tag-color) 20%, transparent) !important;
-  background-color: color-mix(in oklab, var(--tag-color) 5%, transparent) !important;
+  border-color: color-mix(in oklab, var(--tag-color) 25%, transparent) !important;
+  background-color: color-mix(in oklab, var(--tag-color) 8%, transparent) !important;
 }
 
 @media (prefers-reduced-motion: reduce) {

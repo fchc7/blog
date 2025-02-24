@@ -1,0 +1,301 @@
+/* 基础排版 */
+.prose {
+  --un-prose-headings-font-weight: 600;
+  --un-prose-headings-line-height: 1.25;
+}
+
+/* 标题样式 */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  position: relative;
+  font-weight: 600;
+  outline: none;
+}
+
+.prose h1 {
+  letter-spacing: -0.02em;
+  line-height: 40px;
+  font-size: 28px;
+  margin: 40px 0 16px;
+}
+
+.prose h2 {
+  letter-spacing: -0.02em;
+  line-height: 32px;
+  font-size: 24px;
+  margin: 40px 0 16px;
+  padding-bottom: 12px; /* 为分割线留出空间 */
+  border-bottom: 1px solid var(--vp-c-divider); /* 分割线移到底部 */
+}
+
+.prose h3 {
+  letter-spacing: -0.01em;
+  line-height: 28px;
+  font-size: 20px;
+  margin: 32px 0 16px;
+}
+
+.prose h4 {
+  letter-spacing: -0.01em;
+  line-height: 24px;
+  font-size: 18px;
+  margin: 24px 0 16px;
+}
+
+/* 段落和行内元素 */
+.prose p {
+  margin: 16px 0;
+  line-height: 28px;
+}
+
+.prose a {
+  font-weight: 500;
+  color: var(--vp-c-brand-1);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.25s, opacity 0.25s;
+}
+
+.prose a:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+/* 列表样式 */
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  margin: 16px 0;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 8px;
+}
+
+.prose li > ol,
+.prose li > ul {
+  margin: 8px 0 0;
+}
+
+/* 引用块 */
+.prose blockquote {
+  margin: 16px 0;
+  border-left: 2px solid var(--vp-c-divider);
+  padding-left: 16px;
+  transition: border-color 0.5s;
+  color: var(--vp-c-text-2);
+}
+
+.prose blockquote > p {
+  margin: 0;
+  font-size: 16px;
+}
+
+/* 表格样式 */
+.prose table {
+  display: block;
+  border-collapse: collapse;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.prose tr {
+  background-color: var(--vp-c-bg);
+  border-top: 1px solid var(--vp-c-divider);
+  transition: background-color 0.5s;
+}
+
+.prose tr:nth-child(2n) {
+  background-color: var(--vp-c-bg-soft);
+}
+
+.prose th,
+.prose td {
+  border: 1px solid var(--vp-c-divider);
+  padding: 8px 16px;
+}
+
+.prose th {
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--vp-c-text-2);
+  background-color: var(--vp-c-bg-soft);
+}
+
+.prose td {
+  font-size: 14px;
+}
+
+/* 行内代码 */
+.prose :not(pre, h1, h2, h3, h4, h5, h6) > code {
+  font-size: var(--vp-code-font-size);
+  color: var(--vp-code-color);
+  padding: 3px 6px;
+  background-color: var(--vp-code-bg);
+  border-radius: 4px;
+  transition: color 0.25s, background-color 0.5s;
+}
+
+/* 代码块 */
+.prose pre {
+  margin: 16px 0;
+  padding: 20px 0;
+  background-color: var(--vp-code-block-bg);
+  border-radius: 8px;
+  overflow-x: auto;
+  transition: background-color 0.5s;
+}
+
+.prose pre code {
+  display: block;
+  padding: 0 24px;
+  width: fit-content;
+  min-width: 100%;
+  line-height: var(--vp-code-line-height);
+  font-size: var(--vp-code-font-size);
+  color: var(--vp-code-block-color);
+  transition: color 0.5s;
+}
+
+/* 分割线 */
+.prose hr {
+  margin: 16px 0;
+  border: none;
+  border-top: 1px solid var(--vp-c-divider);
+}
+
+/* 响应式调整 */
+@media (min-width: 768px) {
+  .prose h1 {
+    font-size: 32px;
+  }
+}
+
+/* 锚点基础样式 */
+.prose .header-anchor {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-left: -0.87em;
+  font-weight: 500;
+  user-select: none;
+  opacity: 0;
+  text-decoration: none;
+  transition: color 0.25s, opacity 0.25s;
+}
+
+/* 锚点符号 */
+.prose .header-anchor:before {
+  content: "#";
+}
+
+/* 标题悬停时显示锚点 */
+.prose h1:hover .header-anchor,
+.prose h1 .header-anchor:focus,
+.prose h2:hover .header-anchor,
+.prose h2 .header-anchor:focus,
+.prose h3:hover .header-anchor,
+.prose h3 .header-anchor:focus,
+.prose h4:hover .header-anchor,
+.prose h4 .header-anchor:focus,
+.prose h5:hover .header-anchor,
+.prose h5 .header-anchor:focus,
+.prose h6:hover .header-anchor,
+.prose h6 .header-anchor:focus {
+  opacity: 1;
+}
+
+/* 特殊处理 h2 的锚点位置 */
+.prose h2 .header-anchor {
+  top: 24px; /* 因为 h2 有 padding-top */
+}
+
+/* 确保所有标题都有相对定位 */
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  position: relative;
+}
+
+/* 基础文本颜色 */
+.dark .prose {
+  --un-prose-body: rgba(229, 231, 235, 0.85); /* 降低正文饱和度 */
+  --un-prose-headings: rgba(243, 244, 246, 0.9); /* 降低标题饱和度 */
+  --un-prose-links: rgba(96, 165, 250, 0.9); /* 降低链接饱和度 */
+  --un-prose-code: rgba(229, 231, 235, 0.85); /* 降低行内代码饱和度 */
+}
+
+/* 暗黑模式下的文本颜色调整 */
+.dark .prose h1,
+.dark .prose h2,
+.dark .prose h3,
+.dark .prose h4,
+.dark .prose h5,
+.dark .prose h6 {
+  color: rgba(243, 244, 246, 0.9); /* 标题颜色 */
+}
+
+.dark .prose p,
+.dark .prose ul,
+.dark .prose ol,
+.dark .prose li {
+  color: rgba(229, 231, 235, 0.85); /* 正文颜色 */
+}
+
+.dark .prose strong {
+  color: rgba(243, 244, 246, 0.9); /* 加粗文本颜色 */
+}
+
+.dark .prose blockquote {
+  color: rgba(209, 213, 219, 0.8); /* 引用文本颜色 */
+}
+
+.dark .prose code {
+  color: rgba(229, 231, 235, 0.85); /* 行内代码颜色 */
+}
+
+/* 代码块相关颜色调整 */
+.dark [class*="language-"] code {
+  color: rgba(229, 231, 235, 0.85); /* 代码块文本颜色 */
+}
+
+.dark [class*="language-"] > span.lang {
+  color: rgba(156, 163, 175, 0.8); /* 语言标识颜色 */
+}
+
+/* 链接颜色调整 */
+.dark .prose a {
+  color: rgba(96, 165, 250, 0.9); /* 链接颜色 */
+}
+
+.dark .prose a:hover {
+  color: rgba(147, 197, 253, 0.9); /* 链接悬停颜色 */
+}
+
+/* 表格相关颜色调整 */
+.dark .prose th {
+  color: rgba(209, 213, 219, 0.85); /* 表头颜色 */
+}
+
+.dark .prose td {
+  color: rgba(229, 231, 235, 0.85); /* 表格内容颜色 */
+}

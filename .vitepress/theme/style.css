@@ -18,14 +18,14 @@
   font-optical-sizing: auto;
 
   /* 亮色模式变量 */
-  --bg-color: color-mix(in oklab, #d9d5bf 20%, transparent);
+  --bg-color: 0 0% 100%;
   --text-color: #213547;
 }
 
 /* 深色模式变量 */
 :root.dark {
   color-scheme: dark;
-  --bg-color: #111111;
+  --bg-color: 240 10% 3.9%;
   --text-color: #ffffff;
 }
 
@@ -49,4 +49,23 @@ body {
 /* 添加这段脚本，在页面加载前就设置主题 */
 script {
   display: none;
+}
+
+/* 添加 Atom One Dark 主题样式 */
+pre[class*="language-"],
+code[class*="language-"] {
+  color: #abb2bf;
+  background: #282c34;
+  font-family: "Geist Mono", "Fira Code", "Consolas", Monaco, "Andale Mono",
+    "Ubuntu Mono", monospace;
+  text-align: left;
+  white-space: pre;
+  word-spacing: normal;
+  word-break: normal;
+  word-wrap: normal;
+  line-height: 1.5;
+  padding: 1em;
+  margin: 0.5em 0;
+  overflow: auto;
+  border-radius: 4px;
 }

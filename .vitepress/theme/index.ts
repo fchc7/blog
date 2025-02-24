@@ -3,7 +3,9 @@ import Layout from './Layout.vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
 import './style.css'
+import './prose.css'
 import 'virtual:uno.css'
+import './markdown.css'
 
 // 添加这个初始化主题的函数
 function initTheme() {

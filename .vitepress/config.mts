@@ -8,10 +8,16 @@ export default defineConfig({
   head: [
     ['link', { rel: 'icon', href: '/icons/logo.svg' }]
   ],
+  cleanUrls: true,
   vite: {
     plugins: [
       // @ts-ignore vite版本不一致 `pnpm why vite`
       UnoCSS(),
     ]
-  }
+  },
+  markdown: {
+    anchor: {
+      level: [1, 2, 3],
+    }
+  },
 })

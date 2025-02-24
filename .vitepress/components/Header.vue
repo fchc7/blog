@@ -23,8 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="w-full sticky top-0 z-10 py-7 backdrop-blur-sm transition-shadow overflow-hidden opacity-80"
-          :class="{ 'shadow-sm': y > 0 }">
+  <header class="header-layout w-full sticky top-0 z-10 py-7" :class="{ 'border-b': y > 0 }">
     <div class="max-w-[670px] mx-auto w-full px-4 flex justify-between items-center gap-8">
       <div class="flex-1 min-w-0 relative h-8">
         <!-- 默认标题 -->
@@ -66,3 +65,21 @@ onMounted(() => {
     </div>
   </header>
 </template>
+
+<style>
+.header-layout {
+  --border-color: 240 5.9% 90%;
+  
+  border-width: 0px;
+  border-style: solid;
+  border-color: hsl(var(--border-color) / .6);
+  background-color: hsl(var(--bg-color) / .6);
+  
+  backdrop-filter: blur(8px);
+}
+
+
+.dark .header-layout {
+  --border-color: 240 3.7% 15.9%;
+}
+</style>
