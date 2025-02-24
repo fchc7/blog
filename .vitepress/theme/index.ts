@@ -7,13 +7,14 @@ import './style.css'
 import 'virtual:uno.css'
 import './markdown.css'
 
-// 添加这个初始化主题的函数
+// 修改主题初始化函数
 function initTheme() {
-  const userTheme = localStorage.getItem('vitepress-theme-appearance') || 'auto'
+  const userPreference = localStorage.getItem('vueuse-color-scheme')
   const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches
 
-  if (userTheme === 'dark' || (userTheme === 'auto' && systemDark)) {
-    document.documentElement.classList.add('dark')
+  // 如果是浅色模式，确保移除 dark 类
+  if (userPreference === 'light' || (!userPreference && !systemDark)) {
+    document.documentElement.classList.remove('dark')
   }
 }
 
@@ -21,7 +22,6 @@ export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp() {
-    // 在应用初始化时设置主题
     if (typeof window !== 'undefined') {
       initTheme()
     }
