@@ -18,11 +18,22 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: 'Fchc7, 博客, 技术, 生活' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
     ['link', { rel: 'alternate', type: 'application/rss+xml', href: '/feed.xml' }],
+    ['script', {}, `
+      (function() {
+          console.log('script')
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const setting = localStorage.getItem('vueuse-color-scheme') || 'auto';
+        if (setting === 'dark' || (prefersDark && setting !== 'light'))
+          document.documentElement.classList.add('dark');
+        else
+          document.documentElement.classList.remove('dark');
+      })()
+    `],
   ],
 
   // 站点地图配置
   sitemap: {
-    hostname: 'https://你的域名'
+    hostname: 'https://zhuruyi.cn'
   },
 
   cleanUrls: true,
