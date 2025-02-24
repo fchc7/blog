@@ -20,17 +20,22 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_VERSION }}
-          cache: "npm"
+          cache: "pnpm"
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
 
       - name: Install dependencies
-        run: npm ci
+        run: pnpm install --frozen-lockfile
 
       - name: Create env file
         run: |
           echo "VITE_ICP_NO=${{ secrets.VITE_ICP_NO }}" > .env
 
       - name: Build site
-        run: npm run build
+        run: pnpm build
 
       - name: Deploy to server
         uses: easingthemes/ssh-deploy@v5.0.0
