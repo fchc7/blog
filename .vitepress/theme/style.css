@@ -29,26 +29,15 @@
   --text-color: #ffffff;
 }
 
-/* 添加初始主题样式，防止闪烁 */
 :root {
   background-color: hsl(var(--bg-color));
   color: var(--text-color);
 }
 
-html {
-  background-color: var(--bg-color);
-  color: var(--text-color);
-}
-
 body {
-  background-color: var(--bg-color);
+  background-color: hsl(var(--bg-color));
   color: var(--text-color);
   transition: background-color 0.3s, color 0.3s;
-}
-
-/* 添加这段脚本，在页面加载前就设置主题 */
-script {
-  display: none;
 }
 
 /* 添加 Atom One Dark 主题样式 */

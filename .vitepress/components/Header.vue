@@ -54,14 +54,12 @@ if (inBrowser) {
         <button title="GitHub" class="btn-icon text-lg w-7 h-7">
           <a href="https://github.com/fchc7" class="i-custom:github"></a>
         </button>
-        <ClientOnly>
-          <button @click="toggleDark()" 
-                  :title="isDark ? 'Dark Mode' : 'Light Mode'" 
-                  class="btn-icon text-lg w-7 h-7">
-            <span v-if="isDark" class="i-material-symbols:light-mode"></span>
-            <span v-else class="i-material-symbols:dark-mode"></span>
-          </button>
-        </ClientOnly>
+        <button @click="toggleDark()" 
+                :title="isDark ? 'Dark Mode' : 'Light Mode'" 
+                class="btn-icon text-lg w-7 h-7">
+          <span v-if="isDark" class="i-material-symbols:light-mode"></span>
+          <span v-else class="i-material-symbols:dark-mode"></span>
+        </button>
       </div>
     </div>
   </header>
