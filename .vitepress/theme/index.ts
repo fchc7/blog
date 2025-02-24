@@ -22,9 +22,9 @@ export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp() {
-    // if (typeof window !== 'undefined') {
-    //   initTheme()
-    // }
+    if (typeof window !== 'undefined') {
+      initTheme()
+    }
   }
 } satisfies Theme
 
