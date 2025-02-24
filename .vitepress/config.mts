@@ -18,9 +18,6 @@ export default defineConfig({
     ['meta', { name: 'keywords', content: 'Fchc7, 博客, 技术, 生活' }],
     ['meta', { name: 'viewport', content: 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' }],
     ['link', { rel: 'alternate', type: 'application/rss+xml', href: '/feed.xml' }],
-    ['script', { id: 'check-theme' },
-      `(()=>{const e=localStorage.getItem("vueuse-color-scheme")||"auto",a=window.matchMedia("(prefers-color-scheme: dark)").matches;(!e||e==="auto"?a:e==="dark")&&document.documentElement.classList.add("dark")})();`
-    ],
   ],
 
   // 站点地图配置

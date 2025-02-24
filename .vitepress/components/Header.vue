@@ -5,7 +5,9 @@ import { useData } from 'vitepress'
 import { computed, ref, watchEffect } from 'vue'
 import { inBrowser } from 'vitepress'
 
-const isDark = useDark()
+const isDark = useDark({
+  storageKey: 'vitepress-theme-appearance'
+})
 const toggleDark = useToggle(isDark)
 // 将 window 相关的操作移到客户端
 const y = ref(0)
