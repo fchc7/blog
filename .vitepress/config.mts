@@ -20,10 +20,9 @@ export default defineConfig({
     ['link', { rel: 'alternate', type: 'application/rss+xml', href: '/feed.xml' }],
     ['script', {}, `
       (function() {
-          console.log('script')
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const setting = localStorage.getItem('vueuse-color-scheme') || 'auto';
-        if (setting === 'dark' || (prefersDark && setting !== 'light'))
+        if (setting === 'auto' || (prefersDark && setting !== 'light'))
           document.documentElement.classList.add('dark');
         else
           document.documentElement.classList.remove('dark');
