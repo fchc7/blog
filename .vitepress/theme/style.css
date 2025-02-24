@@ -9,7 +9,6 @@
 }
 
 :root {
-  color-scheme: light;
   --vp-font-family-base: "Geist", sans-serif, ui-sans-serif, system-ui,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --vp-font-family-mono: "Geist Mono", "Menlo", "Monaco", "Consolas",
@@ -21,7 +20,6 @@
 }
 
 :root.dark {
-  color-scheme: dark;
   --bg-color: 240 10% 3.9%;
   --text-color: #ffffff;
 }
