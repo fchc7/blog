@@ -8,7 +8,6 @@
   src: url("/fonts/GeistMono[wght].woff2") format("woff2");
 }
 
-/* 添加初始主题预设，防止闪烁 */
 :root {
   color-scheme: light;
   --vp-font-family-base: "Geist", sans-serif, ui-sans-serif, system-ui,
@@ -17,27 +16,20 @@
     "Liberation Mono", "Courier New", monospace;
   font-optical-sizing: auto;
 
-  /* 亮色模式变量 */
   --bg-color: 0 0% 100%;
   --text-color: #213547;
 }
 
-/* 深色模式变量 */
 :root.dark {
   color-scheme: dark;
   --bg-color: 240 10% 3.9%;
   --text-color: #ffffff;
 }
 
-:root {
-  background-color: hsl(var(--bg-color));
-  color: var(--text-color);
-}
-
 body {
   background-color: hsl(var(--bg-color));
   color: var(--text-color);
-  transition: background-color 0.3s, color 0.3s;
+  transition: background-color 0.2s, color 0.2s;
 }
 
 /* 添加 Atom One Dark 主题样式 */
