@@ -2,8 +2,8 @@
 import Layout from './Layout.vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme-without-fonts'
-import './style.css'
 import './prose.css'
+import './style.css'
 import 'virtual:uno.css'
 import './markdown.css'
 
@@ -20,7 +20,7 @@ function initTheme() {
 export default {
   extends: DefaultTheme,
   Layout,
-  enhanceApp({ app, router, siteData }) {
+  enhanceApp() {
     // 在应用初始化时设置主题
     if (typeof window !== 'undefined') {
       initTheme()

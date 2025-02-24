@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { data as posts } from "../utils/posts.data.mts"
-import { ref, onMounted } from 'vue'
+import {  onMounted } from 'vue'
 import pinyin from 'tiny-pinyin'
 
 // 获取首字母（支持拼音）
@@ -47,7 +47,7 @@ const getTagColor = (tag: string) => {
   }
   
   const firstLetter = getFirstLetter(tag)
-  return colors[firstLetter] || { color: '#3b82f6' }
+  return colors[firstLetter as keyof typeof colors] || { color: '#3b82f6' }
 }
 
 // 入场动画

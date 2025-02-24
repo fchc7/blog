@@ -10,7 +10,7 @@
 
 /* 添加初始主题预设，防止闪烁 */
 :root {
-  color-scheme: light;
+  /* color-scheme: light; */
   --vp-font-family-base: "Geist", sans-serif, ui-sans-serif, system-ui,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --vp-font-family-mono: "Geist Mono", "Menlo", "Monaco", "Consolas",
@@ -31,7 +31,7 @@
 
 /* 添加初始主题样式，防止闪烁 */
 :root {
-  background-color: var(--bg-color);
+  background-color: hsl(var(--bg-color));
   color: var(--text-color);
 }
 

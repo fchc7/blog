@@ -1,6 +1,5 @@
 <script setup lang="ts">
-  import { ref, computed, onMounted, onBeforeUnmount, watch } from 'vue'
-  import { useDark } from '@vueuse/core'
+  import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 	import dayjs from 'dayjs'
 	import dayOfYear from 'dayjs/plugin/dayOfYear' // 引入dayOfYear插件
   
@@ -8,11 +7,11 @@
 	dayjs.extend(dayOfYear)
 
   const year = ref(dayjs().year())
-  const isDark = useDark()
+
   
   // 获取当年的天数
   const daysInYear = computed(() => {
-    const isLeapYear = (year) => {
+    const isLeapYear = (year: number) => {
       return (year % 4 === 0 && year % 100 !== 0) || (year % 400 === 0)
     }
     return isLeapYear(year.value) ? 366 : 365
@@ -29,13 +28,13 @@ const tooltipRef = ref(null)
 const tooltipPosition = ref({ x: 0, y: 0 })
 const tooltipVisible = ref(false)
 const activeIndex = ref(0)
-let tooltipTimer: NodeJS.Timeout | null = null
+let tooltipTimer: ReturnType<typeof setTimeout> | null = null
 
 const cardRef = ref<HTMLElement | null>(null) // 添加对卡片的引用
 
-const calculateTooltipPosition = (event, index) => {
-  const dot = event.target
-  const card = dot.closest('.days-card')
+const calculateTooltipPosition = (event: MouseEvent) => {
+  const dot = event.target as HTMLElement
+  const card = dot.closest('.days-card') as HTMLElement
   if (!card || !dot) return { x: 0, y: 0 }
 
   const dotRect = dot.getBoundingClientRect()
@@ -85,7 +84,7 @@ const tooltipContent = computed(() => {
   return `${week}, ${date}`
 })
 
-const handleMouseEnter = (event, index) => {
+const handleMouseEnter = (event: MouseEvent, index: number) => {
   activeIndex.value = index
   currentDay.value = index
   
@@ -94,8 +93,7 @@ const handleMouseEnter = (event, index) => {
   
   // 设置新的定时器
   tooltipTimer = setTimeout(() => {
-    const { x, y } = calculateTooltipPosition(event, index)
-		console.log(x, y)
+    const { x, y } = calculateTooltipPosition(event)
     tooltipPosition.value = { x, y }
     tooltipVisible.value = true
   }, 300)
@@ -159,7 +157,7 @@ onBeforeUnmount(() => {
   position: relative;
   display: inline-flex;
   flex-direction: column;
-  background: var(--bg-color);
+  background: hsl(var(--bg-color));
   border-radius: 18px;
   border: 1px solid color-mix(in oklab, var(--text-color) 15%, transparent);
   width: 100%;
@@ -201,8 +199,8 @@ onBeforeUnmount(() => {
 }
 
 .tooltip-content {
-  background: var(--text-color);
-  color: var(--bg-color);
+  background: #fff;
+  color: #000;
   padding: 4px 8px;
   border-radius: 4px;
   font-size: 12px;

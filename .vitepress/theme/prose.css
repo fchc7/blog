@@ -190,14 +190,16 @@
 /* 锚点基础样式 */
 .prose .header-anchor {
   position: absolute;
-  top: 0;
+  top: 50%;
+  transform: translateY(-50%);
   left: 0;
   margin-left: -0.87em;
   font-weight: 500;
   user-select: none;
   opacity: 0;
   text-decoration: none;
-  transition: color 0.25s, opacity 0.25s;
+  color: var(--vp-c-text-1); /* 使用主题变量 */
+  transition: opacity 0.25s;
 }
 
 /* 锚点符号 */
@@ -207,23 +209,21 @@
 
 /* 标题悬停时显示锚点 */
 .prose h1:hover .header-anchor,
-.prose h1 .header-anchor:focus,
 .prose h2:hover .header-anchor,
-.prose h2 .header-anchor:focus,
 .prose h3:hover .header-anchor,
-.prose h3 .header-anchor:focus,
 .prose h4:hover .header-anchor,
-.prose h4 .header-anchor:focus,
 .prose h5:hover .header-anchor,
-.prose h5 .header-anchor:focus,
-.prose h6:hover .header-anchor,
-.prose h6 .header-anchor:focus {
+.prose h6:hover .header-anchor {
+  opacity: 0.5;
+}
+
+.prose .header-anchor:hover {
   opacity: 1;
 }
 
 /* 特殊处理 h2 的锚点位置 */
 .prose h2 .header-anchor {
-  top: 24px; /* 因为 h2 有 padding-top */
+  top: calc(50% - 6px);
 }
 
 /* 确保所有标题都有相对定位 */

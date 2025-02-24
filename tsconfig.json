@@ -3,7 +3,6 @@
     "module": "esnext",
     "moduleResolution": "bundler",
     "target": "esnext",
-    "types": ["vite/client"],
     "strict": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
@@ -11,7 +10,9 @@
     "esModuleInterop": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noImplicitReturns": true
+    "noImplicitReturns": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true
   },
   "include": [
     ".vitepress/**/*.ts",

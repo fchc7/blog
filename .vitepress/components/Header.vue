@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="header-layout w-full sticky top-0 z-10 py-7" :class="{ 'border-b': y > 0 }">
+  <header class="header-layout w-full sticky top-0 z-10 transition-all duration-200 ease-out" :class="[{ 'border-b': y > 0}, isPost ? 'py-4' : 'py-7']">
     <div class="max-w-[670px] mx-auto w-full px-4 flex justify-between items-center gap-8">
       <div class="flex-1 min-w-0 relative h-8">
         <!-- 默认标题 -->
