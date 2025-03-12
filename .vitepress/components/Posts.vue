@@ -68,14 +68,14 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="posts-container mt-20 space-y-16 max-w-[670px]">
+  <div class="posts-container mt-20 space-y-16 max-w-[670px] font-mono">
     <a v-for="(post, index) in posts"
        :key="post.title"
        class="post-item group block relative"
        :href="post.url">
       <div class="flex flex-col gap-1">
         <div class="flex flex-col sm:flex-row sm:justify-between sm:items-baseline gap-2 sm:gap-8">
-          <span class="post-title text-lg font-medium line-clamp-1">
+          <span class="post-title font-mono text-lg font-medium line-clamp-1">
             {{ post.title }}
           </span>
           <time class="text-sm font-mono text-gray-500/80 whitespace-nowrap order-first sm:order-last">{{ post.date }}</time>

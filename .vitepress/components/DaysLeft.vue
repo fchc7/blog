@@ -2,6 +2,7 @@
   import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 	import dayjs from 'dayjs'
 	import dayOfYear from 'dayjs/plugin/dayOfYear' // 引入dayOfYear插件
+  import { data as posts } from '../utils/posts.data.mts' // 导入文章数据
   
 	// 使用dayOfYear插件
 	dayjs.extend(dayOfYear)
@@ -22,6 +23,28 @@ const currentDay = ref(0)
 
 const getCurrentDayOfYear = () => {
   currentDay.value = dayjs().dayOfYear() // 使用dayjs获取当前是当年的第几天
+}
+
+// 计算当年有文章的日期
+const postDays = computed(() => {
+  const currentYear = year.value.toString()
+  const days = new Set()
+  
+  posts.forEach(post => {
+    // 只匹配当年的文章
+    if (post.date.startsWith(currentYear)) {
+      const postDate = dayjs(post.date)
+      const dayOfYear = postDate.dayOfYear()
+      days.add(dayOfYear)
+    }
+  })
+  
+  return days
+})
+
+// 检查某天是否有文章
+const hasPostOnDay = (day: number) => {
+  return postDays.value.has(day)
 }
 
 const tooltipRef = ref(null)
@@ -128,7 +151,11 @@ onBeforeUnmount(() => {
            class="dot-container" 
            @mouseenter="(e) => handleMouseEnter(e, i)" 
            @mouseleave="handleMouseLeave">
-        <div class="dot" :class="{ 'active': i <= currentDay }"></div>
+        <div class="dot" 
+             :class="{ 
+               'active': i <= currentDay,
+               'has-post': hasPostOnDay(i)
+             }"></div>
       </div>
     </div>
 
@@ -188,6 +215,16 @@ onBeforeUnmount(() => {
 }
 
 .dot.active {
+  opacity: 1;
+}
+
+/* 添加有文章的点的样式 */
+.dot.has-post {
+  background-color: #10b981; /* 淡绿色 */
+  opacity: 0.8;
+}
+
+.dot.has-post.active {
   opacity: 1;
 }
 

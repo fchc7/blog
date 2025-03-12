@@ -299,3 +299,11 @@
 .dark .prose td {
   color: rgba(229, 231, 235, 0.85); /* 表格内容颜色 */
 }
+
+.prose .custom-block-title {
+  margin: 0;
+}
+
+.custom-block [class*="language-"] code {
+  background-color: transparent;
+}

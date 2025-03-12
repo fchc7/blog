@@ -3,7 +3,7 @@
 </script>
 
 <template>
-    <article class="prose dark:prose-invert">
+    <article class="prose dark:prose-invert font-mono">
         <slot />
     </article>
 </template>

@@ -30,7 +30,7 @@ const icpNo = ref(import.meta.env.VITE_ICP_NO || 'xxx')
       </main>
 
       <!-- 底部备案信息 -->
-      <footer class="w-full py-6 text-center text-sm text-gray-500">
+      <footer class="w-full py-6 text-center text-sm text-gray-400">
         <a href="https://beian.miit.gov.cn/" target="_blank" class="max-w-[670px] mx-auto px-4 w-full">
           © {{  new Date().getFullYear() }} 备案号：{{ icpNo }}
         </a>
